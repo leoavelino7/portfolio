@@ -1,9 +1,8 @@
 require('dotenv').config();
 let express     = require("express"),
     load        = require("express-load"),
-    bodyParser  = require("body-parser"),
-    port        = (process.env.PORT) ? process.env.PORT : 3000;
-
+    bodyParser  = require("body-parser");
+    
 module.exports = () => {
     let app = express();
 
