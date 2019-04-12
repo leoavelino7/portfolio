@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js" 
+    "dev": "nodemon server.js"
   },
   "author": "Leonardo Avelino",
   "license": "UNLICENSED",
@@ -15,5 +15,14 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-load": "^1.1.16"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^5.0.1",
+    "merge2": "^1.2.3",
+    "typescript": "^3.4.3"
   }
 }

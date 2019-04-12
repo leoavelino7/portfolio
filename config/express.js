@@ -11,12 +11,12 @@ module.exports = () => {
 
     /* Config ejs */
     app.set("view engine", "ejs");
-    app.set("views", "../app/views");
+    app.set("views", `${__dirname}/../app/views/pages`);
 
-    app.use(express.static("../public"));
+    app.use(express.static( `${__dirname}/../public`));
     app.use(bodyParser.json());
 
-    load("modles", {cwd: "app"})
+    load("models", {cwd: "app"})
         .then("controllers")
         .then("routes")
         .into(app);
