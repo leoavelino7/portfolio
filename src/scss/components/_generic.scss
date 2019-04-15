@@ -21,15 +21,12 @@
     padding: 50px 0;
 } 
 
-@media screen and(min-width: 992px){
-    .app{
-        display: flex;
-        flex-direction: row;
-        overflow: hidden;
-    }
-}
+.app {
+    width: 90%;
+    margin: auto;
+}    
 
-@media screen and (min-width: 1500px){
+@media screen and (min-width: 992px){
     .content{
         left: 270px;
         width: calc(100% - 270px);
@@ -38,11 +35,4 @@
     .minvh-100{
         min-height: 100vh;
     } 
-}
-
-@media screen and (max-width: 992px){
-    .app {
-        width: 90%;
-        margin: auto;
-    }    
 }
