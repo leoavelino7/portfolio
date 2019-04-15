@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:400,500,700,900');
+$saira_weight: 400, 500, 700, 900;
+
+// Fonts family
+.font-saira{
+    font-family: 'Saira Extra Condensed', sans-serif;
+    @each $weight in $saira_weight {
+        &.weight-#{$weight} {
+            font-weight: $weight;
+        }
+    }
+}
+
+// Fonts size
+.font{
+    &-1{
+        font-size: 1em;
+        &-1{
+            font-size: 1.1em;
+        }
+        &-3{
+            font-size: 1.3em;
+        }
+        &-8{
+            font-size: 1.8em;
+        }
+    }
+
+    &-2{
+        font-size: 2em;
+    }
+
+    &-4{
+        font-size: 4em;
+    }
+
+    &-6{
+        font-size: 6em;
+    }
+}

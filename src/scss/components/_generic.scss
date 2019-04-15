@@ -1,0 +1,48 @@
+@import "./colors";
+@import "./font";
+
+.content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+}
+
+.divider{
+    width: 100%;
+    height: 3px;
+    border: none;
+    margin: 0;
+}
+
+.minvh-100{
+    padding: 50px 0;
+} 
+
+@media screen and(min-width: 992px){
+    .app{
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width: 1500px){
+    .content{
+        left: 270px;
+        width: calc(100% - 270px);
+    }
+    
+    .minvh-100{
+        min-height: 100vh;
+    } 
+}
+
+@media screen and (max-width: 992px){
+    .app {
+        width: 90%;
+        margin: auto;
+    }    
+}

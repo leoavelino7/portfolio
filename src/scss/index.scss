@@ -1,7 +1,5 @@
-.font-1{
-    font-size: 1.1em;
-}
-
-@import "./components/colors";
+@import "./components/generic";
 @import "./components/navbar";
-
+@import "./components/sec-info";
+@import "./components/news-summary";
+@import "./components/sec-lists";

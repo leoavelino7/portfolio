@@ -1,3 +1,23 @@
+$primary: #bd5d38;
+
 .bg-primary {
-    background-color: #bd5d38!important;
+    background-color: $primary !important;
 }
+
+.text-primary {
+    color: $primary !important;
+}
+
+.h-bg-dark {
+    &:hover {
+        background-color: $primary !important;
+    }
+}
+
+.h-c-dark {
+    &:hover {
+        color: $primary !important;
+    }
+}
+
+a.text-primary:focus, a.text-primary:hover { color: initial !important }

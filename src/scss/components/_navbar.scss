@@ -3,13 +3,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 100%;
+    max-width: 270px;
     height: 100vh;
+    z-index: 9999;
+    transition: left .5s ease;
+
+    &[data-collapse=false]{
+        left: -100%;
+    }
+    &[data-collapse=true]{
+        left: 0;
+    }
 
     &__border {
         border-radius: 50%;
-        width: 180px;
-        height: 180px;
+        width: 150px;
+        height: 150px;
         background: #fff;
         margin: 30px 0;
 
@@ -25,7 +35,7 @@
         padding: 0;
 
         &__item {
-            padding: 10px 0;
+            padding: 8px 0;
 
             &--link {
                 opacity: .5;
@@ -37,6 +47,14 @@
                     opacity: 1;
                 }
             }
+        }
+    }
+}
+
+@media screen and(min-width: 1500px){
+    .sidebar{
+        &[data-collapse=false]{
+            left: 0;
         }
     }
 }

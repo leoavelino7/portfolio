@@ -1,0 +1,27 @@
+.news-summary{
+    &--title {
+        margin: 0 0 40px 0;
+    }
+    &__block {
+        margin: 0 0 40px 0;
+        &:nth-last-child(1){
+            margin: 0 0;
+        }
+    }
+    &__between{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__hgroup {
+        margin: 20px 0;
+        &--title-2 {
+            letter-spacing: 1px;
+        }
+    }
+
+    &__period{
+        margin: 20px 0;
+    }
+}
