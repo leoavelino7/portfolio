@@ -1,7 +1,7 @@
 <%- include('../components/header.ejs', {css: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', './css/index.css'], title: 'Leonardo Avelino'}); %>
 <div class="app">
     <!-- Desktop -->
-    <nav class="position-fixed sidebar bg-primary" data-collapse=false>
+    <nav id="sidebarMain" class="position-fixed sidebar bg-primary" data-collapse=false>
         <div class="sidebar__border">
             <div class="sidebar__border--image"></div>
         </div>
@@ -32,7 +32,7 @@
         <div class="back-to-top">
             <i class="back-to-top--icon fas fa-3x fa-sort-up text-white"></i>
         </div>
-        <div class="hamburguer" data-active="false">
+        <div id="cntSidebarMain" class="hamburguer" data-open="false" >
             <span class="hamburguer--line"></span>
             <span class="hamburguer--line"></span>
             <span class="hamburguer--line"></span>
@@ -266,4 +266,4 @@
         </section>
     </div>
 </div>
-<%- include('../components/footer.ejs')%>
+<%- include('../components/footer.ejs', {js: ['./js/index.js']})%>

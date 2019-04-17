@@ -95,7 +95,7 @@
         transition: transform 1s ease;
     }
 
-    &[data-active=true] {
+    &[data-open=true] {
         &>.hamburguer--line {
             &:nth-child(1) {
                 transform: translate(30px);

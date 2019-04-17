@@ -27,23 +27,19 @@ gulp.task("sass", () => {
 
 /* Config TypeScript */
 gulp.task("ts", () => {
-    let tsResult = gulp.src(`${entry}/**/*.ts`)
+     let tsResult =  gulp.src(`${entry}/ts/**/*.ts`)
         .pipe(ts({
-            declaration: true,
-            charset: 'UTF-8',
-            removeComments: true
-        }));
+            target: 'es2015'
+        }))
     
     return merge([
-        tsResult.dts.pipe(gulp.dest(`${entry}/ts/definitions`)),
+        tsResult.dts.pipe(gulp.dest(`${output}/js/definitions`)),
         tsResult.js.pipe(gulp.dest(`${output}/js`))
     ]);
 });
 
 /* Watch */
 gulp.task("project:watch", () => {
-    // gulp.watch(`${PATH.sass.entry}/*.scss`, gulp.series("sass"));
-    // gulp.watch(`${PATH.ts.entry}/**/*.ts`, gulp.series("ts"));
-
     gulp.watch(`${entry}/**/*.scss`, gulp.series("sass"));
+    gulp.watch(`${entry}/**/*.ts`, gulp.series("ts"));
 });
