@@ -1,5 +1,5 @@
 <%- include('../components/header.ejs', {css: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', './css/index.css'], title: 'Leonardo Avelino'}); %>
-<div class="app">
+<div id="top" class="app">
     <!-- Desktop -->
     <nav id="sidebarMain" class="position-fixed sidebar bg-primary" data-collapse=false>
         <div class="sidebar__border">
@@ -7,29 +7,29 @@
         </div>
         <ul class="sidebar__list text-center">
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#">About</a>
+                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#about" data-internal-link="true">About</a>
             </li>
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#">Experience</a>
+                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#experience" data-internal-link="true">Experience</a>
             </li>
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#">Education</a>
+                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#education" data-internal-link="true">Education</a>
             </li>
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#">Skills</a>
+                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#skills" data-internal-link="true">Skills</a>
             </li>
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#">Interests</a>
+                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#interests" data-internal-link="true">Interests</a>
             </li>
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#">Awards</a>
+                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#awards" data-internal-link="true">Awards</a>
             </li>
         </ul>
     </nav>
 
     <!-- Sidebar controller -->
     <div class="controller bg-primary">
-        <div class="back-to-top">
+        <div data-href="#top" data-back-to-top="true" class="back-to-top">
             <i class="back-to-top--icon fas fa-3x fa-sort-up text-white"></i>
         </div>
         <div id="cntSidebarMain" class="hamburguer" data-open="false" >
@@ -154,7 +154,7 @@
 
         <!-- Skills -->
         <hr class="divider bg-light">
-        <section class="sec-lists minvh-100 d-flex flex-column justify-content-center">
+        <section id="skills" class="sec-lists minvh-100 d-flex flex-column justify-content-center">
             <div class="container">
                 <div class="row">
                     <div class="col-12 p-0">
@@ -233,9 +233,9 @@
             </div>
         </section>
 
-        <!-- Skills -->
+        <!-- Awards -->
         <hr class="divider bg-light">
-        <section class="sec-lists minvh-100 d-flex flex-column justify-content-center">
+        <section id="awards" class="sec-lists minvh-100 d-flex flex-column justify-content-center">
             <div class="container">
                 <div class="row">
                     <div class="col-12 p-0">

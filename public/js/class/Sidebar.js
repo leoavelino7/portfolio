@@ -12,7 +12,7 @@ export class Sidebar {
     }
     _searchElement(identifier) {
         return new Promise((resolve, reject) => {
-            resolve(document.querySelector(`#${identifier}`));
+            resolve(document.querySelector(identifier));
         });
     }
     _eventInController(element) {

@@ -1,13 +1,12 @@
 export class Sidebar {
-    private _element: any;
-    private _status: Boolean;
-    private _controller: any;
+    private _element: Promise<void>;
+    private _status: boolean;
+    private _controller: Promise<void>;
 
-    constructor(elementIdentifier: String, controllerIdentifier: String){
-        this._element       = this._searchElement(elementIdentifier);
-        this._controller    = this._searchElement(controllerIdentifier);
-        this._status        = false;
-
+    constructor(elementIdentifier: string, controllerIdentifier: string){
+        this._element           = this._searchElement(elementIdentifier);
+        this._controller        = this._searchElement(controllerIdentifier);
+        this._status            = false;
         this._start();
     } 
     
@@ -17,9 +16,9 @@ export class Sidebar {
         });
     }
 
-    private _searchElement(identifier: String): any{
+    private _searchElement(identifier: string): any{
         return new Promise<Object>((resolve, reject) => {
-            resolve(document.querySelector(`#${identifier}`));
+            resolve(document.querySelector(identifier));
         });
     }
 
