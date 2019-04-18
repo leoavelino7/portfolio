@@ -1,39 +1,87 @@
-export class Animate {
-    constructor(identifier, attr, duration, type, hash) {
-        // Solicita que a rolagem seja iniciada de acordo com o elemento recebido através do evento
-        this._scrollToIdOnClick = event => {
+/**
+   * @name AnimateScroll
+   * @description Animate scroll bar
+   * @access public
+   * @version 1.0.0
+*/
+export class AnimateScroll {
+    constructor(identifier, attr, duration, diffY = 0, type, hash) {
+        /**
+         * @name _scrollToIdOnClick
+         * @description Calls the scroling process
+         * @access private
+         * @param {Event} event: triggered event
+         * @internal This function uses the constants responsible for taking the final position and the hash
+         * @return void
+        */
+        this._scrollToIdOnClick = (event) => {
             event.preventDefault();
             let { currentTarget } = event;
-            const posY = this._getAttr(currentTarget).offsetTop - 80, hashName = this._getAttr(currentTarget).id;
-            // Inicia o processo de rolagem do scroll enviando a posição y final
+            const posY = this._getAttr(currentTarget).offsetTop + this._diffY, hashName = this._getAttr(currentTarget).id;
             this._scrollToPosition(posY);
-            // Verifica se é para adicionar um hash ou não
+            // Checks whether to add the hash or not
             (this._hash) ? history.pushState({}, '', hashName) : null;
         };
         this._links = document.querySelectorAll(identifier);
         this._attr = attr;
         this._duration = duration;
+        this._diffY = diffY;
         this._type = type;
         this._hash = hash;
         this._links.forEach(item => item.addEventListener("click", this._scrollToIdOnClick));
     }
-    // Recebe o elemento como parâmetro e retorna alguns de seus atributos
+    /**
+     * @name _getAttr
+     * @description Receives the element as parameter and returns some of its attributes
+     * @access private
+     * @param {any} element
+     * @return any {id, offsetTop}
+     */
     _getAttr(element) {
         const id = element.getAttribute(this._attr), offsetTop = document.querySelector(id).offsetTop;
         return { id, offsetTop };
     }
-    // Recebe a posição y final e inicia chama a função que suaviza a rolagem
+    /**
+     * @name _scrollToPosition
+     * @description Receives end position and calls function for smooth scrolling
+     * @access private
+     * @internal If only want the native:
+     * @tutorial
+     * window.scroll({
+     *  top: posY,
+     *  behavior: "smooth"
+     * })
+     * @param {number} posY: Y-axis end position
+     * @return void
+     */
     _scrollToPosition(posY) {
         this._smoothScrollTo(0, posY);
     }
-    // Recebe a posição X e Y final. E calcula a distância total que da rolagem (ponto inicial ao ponto final)
+    /**
+     * @name _smoothScrollTo
+     * @description Smooth scroll animation
+     * @access private
+     * @param {number} endX: destination x coordinate
+     * @param {number} endY: destination y coordinate
+     * @return void
+    */
     _smoothScrollTo(endX, endY) {
         const startX = window.scrollX || window.pageXOffset, startY = window.scrollY || window.pageYOffset, distanceX = endX - startX, distanceY = endY - startY, startTime = new Date().getTime();
-        // Efetua a rolagem informando os dados necessários
-        this.tolRoll(startX, startY, distanceX, distanceY, startTime, this._duration);
+        this._tolRoll(startX, startY, distanceX, distanceY, startTime, this._duration);
     }
-    // Recebe os dados e executa a rolagem
-    tolRoll(startX, startY, distanceX, distanceY, startTime, duration) {
+    /**
+     * @name _tolRoll
+     * @description Receives the data and run the scroll
+     * @access private
+     * @param {number} startX: initial X coordinate
+     * @param {number} startY: initial Y coordinate
+     * @param {number} distanceX: distance from initial and final X
+     * @param {number} distanceY: distance from initial and final Y
+     * @param {number} startTime: transition start time
+     * @param {number} duration: duration transition
+     * @return void
+     */
+    _tolRoll(startX, startY, distanceX, distanceY, startTime, duration) {
         const timer = setInterval(() => {
             const time = new Date().getTime() - startTime, { newX, newY } = this._selectedType(startX, startY, distanceX, distanceY, startTime, duration); // Retorna os valores incial e final para suavizar
             if (time >= duration) {
@@ -42,7 +90,18 @@ export class Animate {
             window.scroll(newX, newY);
         }, 1000 / 60); // 60 fps 
     }
-    // Calcula e retorna os valores finais de acordo com o tipo de suavização
+    /**
+     * @name _tolRoll
+     * @description Receives the data and run the scroll
+     * @access private
+     * @param {number} startX: initial X coordinate
+     * @param {number} startY: initial Y coordinate
+     * @param {number} distanceX: distance from initial and final X
+     * @param {number} distanceY: distance from initial and final Y
+     * @param {number} startTime: transition start time
+     * @param {number} duration: duration transition
+     * @return any
+     */
     _selectedType(startX, startY, distanceX, distanceY, startTime, duration) {
         const time = new Date().getTime() - startTime;
         let newX, newY;
@@ -58,7 +117,19 @@ export class Animate {
         }
         return { newX, newY };
     }
-    // Responsável por efetuar a rolagem
+    /**
+     * @name _effect
+     * @description Responsible for scrolling
+     * @access private
+     * @internal vars {start} and {end} Responsible for the smootheness of the transition
+     * @param {number} time: time scroll
+     * @param {number} from: scroll destination
+     * @param {number} distance: distance of the route
+     * @param {number} duration: transition duration
+     * @param {number} start: initial time defining transition type
+     * @param {number} end: final time defining transition type
+     * @return number
+    */
     _effect(time, from, distance, duration, start, end) {
         if ((time /= duration / 2) < 1) {
             return distance / 2 * Math.pow(time, start) + from;

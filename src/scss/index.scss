@@ -3,3 +3,10 @@
 @import "./components/sec-info";
 @import "./components/news-summary";
 @import "./components/sec-lists";
+
+@media screen and(min-width: 992px){
+    body {
+        overflow: hidden; 
+    }
+}
+
