@@ -13,10 +13,28 @@
 
     &[data-collapse=false] {
         left: -100%;
+        &~.wall {
+            left: -100%;
+        }
     }
 
     &[data-collapse=true] {
         left: 0;
+
+        &~.wall {
+            left: 0;
+        }
+    }
+
+    &~.wall {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #2414149c;
+        z-index: 9998;
+        transition: left 1s ease;
     }
 
     &__border {

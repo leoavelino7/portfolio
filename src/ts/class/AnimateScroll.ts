@@ -1,8 +1,8 @@
- /**
-    * @name AnimateScroll
-    * @description Animate scroll bar
-    * @access public
-    * @version 1.0.0
+/**
+   * @name AnimateScroll
+   * @description Animate scroll bar
+   * @access public
+   * @version 1.0.0
 */
 export class AnimateScroll {
     private _links: NodeListOf<Element>;
@@ -12,13 +12,13 @@ export class AnimateScroll {
     private _type: string;
     private _hash: boolean;
 
-    constructor(identifier: string, attr: string, duration:number, diffY: number = 0, type?: string, hash?: boolean){
-        this._links     = document.querySelectorAll(identifier);
-        this._attr      = attr;
-        this._duration  = duration;
-        this._diffY     = diffY;
-        this._type      = type;
-        this._hash      = hash;
+    constructor(identifier: string, attr: string, duration: number, diffY: number = 0, type?: string, hash?: boolean) {
+        this._links = document.querySelectorAll(identifier);
+        this._attr = attr;
+        this._duration = duration;
+        this._diffY = diffY;
+        this._type = type;
+        this._hash = hash;
         this._links.forEach(item => item.addEventListener("click", this._scrollToIdOnClick));
     }
 
@@ -33,15 +33,15 @@ export class AnimateScroll {
     private _scrollToIdOnClick = (event: Event): void => {
         event.preventDefault();
         let { currentTarget } = event;
-        const posY: number      = this._getAttr(currentTarget).offsetTop + this._diffY,
-              hashName: string  = this._getAttr(currentTarget).id;
-        
+        const posY: number = this._getAttr(currentTarget).offsetTop + this._diffY,
+            hashName: string = this._getAttr(currentTarget).id;
+
         this._scrollToPosition(posY);
 
         // Checks whether to add the hash or not
         (this._hash) ? history.pushState({}, '', hashName) : null;
     }
-    
+
     /**
      * @name _getAttr
      * @description Receives the element as parameter and returns some of its attributes
@@ -49,10 +49,10 @@ export class AnimateScroll {
      * @param {any} element 
      * @return any {id, offsetTop}
      */
-    private _getAttr(element: any): any{
-        const id: any        = element.getAttribute(this._attr),
-              offsetTop: any = document.querySelector(id).offsetTop;
-            
+    private _getAttr(element: any): any {
+        const id: any = element.getAttribute(this._attr),
+            offsetTop: any = document.querySelector(id).offsetTop;
+
         return { id, offsetTop };
     }
 
@@ -69,7 +69,7 @@ export class AnimateScroll {
      * @param {number} posY: Y-axis end position 
      * @return void
      */
-    private _scrollToPosition(posY: number): void{
+    private _scrollToPosition(posY: number): void {
         this._smoothScrollTo(0, posY);
     }
 
@@ -81,13 +81,13 @@ export class AnimateScroll {
      * @param {number} endY: destination y coordinate
      * @return void
     */
-    private _smoothScrollTo(endX: number, endY: number): void{
-        const startX:number    = window.scrollX || window.pageXOffset,
-              startY:number    = window.scrollY || window.pageYOffset,
-              distanceX:number = endX - startX,
-              distanceY:number = endY - startY,
-              startTime:number = new Date().getTime();
-        
+    private _smoothScrollTo(endX: number, endY: number): void {
+        const startX: number = window.scrollX || window.pageXOffset,
+            startY: number = window.scrollY || window.pageYOffset,
+            distanceX: number = endX - startX,
+            distanceY: number = endY - startY,
+            startTime: number = new Date().getTime();
+
         this._tolRoll(startX, startY, distanceX, distanceY, startTime, this._duration);
     }
 
@@ -103,12 +103,12 @@ export class AnimateScroll {
      * @param {number} duration: duration transition
      * @return void
      */
-    private _tolRoll(startX:number, startY:number, distanceX:number, distanceY:number, startTime:number, duration: number): void{
+    private _tolRoll(startX: number, startY: number, distanceX: number, distanceY: number, startTime: number, duration: number): void {
         const timer = setInterval(() => {
-            const time:number  = new Date().getTime() - startTime,
-                  { newX, newY } = this._selectedType(startX, startY, distanceX, distanceY, startTime, duration); // Retorna os valores incial e final para suavizar
-            
-            if(time >= duration){
+            const time: number = new Date().getTime() - startTime,
+                { newX, newY } = this._selectedType(startX, startY, distanceX, distanceY, startTime, duration); // Retorna os valores incial e final para suavizar
+
+            if (time >= duration) {
                 clearInterval(timer);
             }
             window.scroll(newX, newY);
@@ -127,20 +127,20 @@ export class AnimateScroll {
      * @param {number} duration: duration transition
      * @return any
      */
-    private _selectedType(startX:number, startY:number, distanceX:number, distanceY:number, startTime:number, duration: number): any{
-        const time:number  = new Date().getTime() - startTime;
-        let newX:number, newY:number;
+    private _selectedType(startX: number, startY: number, distanceX: number, distanceY: number, startTime: number, duration: number): any {
+        const time: number = new Date().getTime() - startTime;
+        let newX: number, newY: number;
 
-        switch(this._type){
+        switch (this._type) {
             case "easeInOut":
-                newX    = this._effect(time, startX, distanceX, duration, 4, 3);
-                newY    = this._effect(time, startY, distanceY, duration, 4, 3);
+                newX = this._effect(time, startX, distanceX, duration, 4, 3);
+                newY = this._effect(time, startY, distanceY, duration, 4, 3);
                 break;
 
             default: // linear
-                newX    = this._effect(time, startX, distanceX, duration, 4, 4);
-                newY    = this._effect(time, startY, distanceY, duration, 4, 4);
-            break;
+                newX = this._effect(time, startX, distanceX, duration, 4, 4);
+                newY = this._effect(time, startY, distanceY, duration, 4, 4);
+                break;
         }
         return { newX, newY };
     }
@@ -158,10 +158,10 @@ export class AnimateScroll {
      * @param {number} end: final time defining transition type 
      * @return number
     */
-    private _effect(time: number, from: number, distance: number, duration: number, start: number, end: number):number{
-        if((time /= duration / 2) < 1){
+    private _effect(time: number, from: number, distance: number, duration: number, start: number, end: number): number {
+        if ((time /= duration / 2) < 1) {
             return distance / 2 * Math.pow(time, start) + from;
-        }else{
+        } else {
             return -distance / 2 * ((time -= 2) * Math.pow(time, end) - 2) + from;
         }
     }
