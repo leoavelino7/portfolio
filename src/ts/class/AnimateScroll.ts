@@ -39,6 +39,11 @@ export class AnimateScroll {
     */
     private _scrollToIdOnClick = (event: Event): void => {
         event.preventDefault();
+        
+        // Disabled links
+        this._links.forEach(link => link.classList.add("disabled"));
+        setTimeout(() => this._links.forEach(link => link.classList.remove("disabled")), this._duration);
+
         let { currentTarget } = event;
         const posY: number = this._getAttr(currentTarget).offsetTop + this._diffY,
             hashName: string = this._getAttr(currentTarget).id;

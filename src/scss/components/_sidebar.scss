@@ -76,6 +76,10 @@
     opacity: 1 !important;
 }
 
+.disabled {
+    pointer-events: none !important;
+}
+
 .controller {
     display: flex;
     flex-direction: row;
