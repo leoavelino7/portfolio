@@ -1,38 +1,37 @@
 <%- include('../components/header.ejs', {css: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', './css/index.css'], title: 'Leonardo Avelino'}); %>
 <div id="top" class="app">
-    <!-- Desktop -->
     <nav id="sidebarMain" class="sidebar bg-primary" data-collapse=false>
         <div class="sidebar__border">
             <div class="sidebar__border--image"></div>
         </div>
         <ul class="sidebar__list text-center">
             <li class="sidebar__list__item">
-                <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#about"
-                    data-internal-link="true">About</a>
+                <a class="active sidebar__list__item--link font-1 text-white text-uppercase" href="#about"
+                    data-internal-link="true"><span class="scrollspy-link">About</span></a>
             </li>
             <li class="sidebar__list__item">
                 <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#experience"
-                    data-internal-link="true">Experience</a>
+                    data-internal-link="true"><span class="scrollspy-link">Experience</span></a>
             </li>
             <li class="sidebar__list__item">
                 <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#education"
-                    data-internal-link="true">Education</a>
+                    data-internal-link="true"><span class="scrollspy-link">Education</span></a>
             </li>
             <li class="sidebar__list__item">
                 <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#skills"
-                    data-internal-link="true">Skills</a>
+                    data-internal-link="true"><span class="scrollspy-link">Skills</span></a>
             </li>
             <li class="sidebar__list__item">
                 <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#interests"
-                    data-internal-link="true">Interests</a>
+                    data-internal-link="true"><span class="scrollspy-link">Interests</span></a>
             </li>
             <li class="sidebar__list__item">
                 <a class="sidebar__list__item--link font-1 text-white text-uppercase" href="#awards"
-                    data-internal-link="true">Awards</a>
+                    data-internal-link="true"><span class="scrollspy-link">Awards</span></a>
             </li>
         </ul>
     </nav>
-    <div class="wall"></div>
+    <div id="wall" class="wall"></div>
 
     <!-- Sidebar controller -->
     <div class="controller bg-primary">
@@ -47,7 +46,7 @@
     </div>
 
     <!-- About -->
-    <section id="about" class="sec-info minvh-100 d-flex flex-column justify-content-center mt-lg-5 mt-xl-0">
+    <section id="about" class="scrollspy sec-info minvh-100 d-flex flex-column justify-content-center mt-lg-5 mt-xl-0">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -92,7 +91,7 @@
 
     <!-- Experience -->
     <hr class="divider bg-light">
-    <section id="experience" class="news-summary minvh-100 d-flex flex-column justify-content-center">
+    <section id="experience" class="scrollspy news-summary minvh-100 d-flex flex-column justify-content-center">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -129,7 +128,7 @@
 
     <!-- Education -->
     <hr class="divider bg-light">
-    <section id="education" class="news-summary minvh-100 d-flex flex-column justify-content-center">
+    <section id="education" class="scrollspy news-summary minvh-100 d-flex flex-column justify-content-center">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -167,7 +166,7 @@
 
     <!-- Skills -->
     <hr class="divider bg-light">
-    <section id="skills" class="sec-lists minvh-100 d-flex flex-column justify-content-center">
+    <section id="skills" class="scrollspy sec-lists minvh-100 d-flex flex-column justify-content-center">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -223,7 +222,7 @@
 
     <!-- Interests -->
     <hr class="divider bg-light">
-    <section id="interests" class="news-summary minvh-100 d-flex flex-column justify-content-center">
+    <section id="interests" class="scrollspy news-summary minvh-100 d-flex flex-column justify-content-center">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -252,7 +251,7 @@
 
     <!-- Awards -->
     <hr class="divider bg-light">
-    <section id="awards" class="sec-lists minvh-100 d-flex flex-column justify-content-center">
+    <section id="awards" class="scrollspy sec-lists minvh-100 d-flex flex-column justify-content-center">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -284,4 +283,18 @@
         </div>
     </section>
 </div>
-<%- include('../components/footer.ejs', {js: ['./js/index.js']})%>
+<%- include("../components/footer.ejs", {
+    js: [
+        {
+            "src": "./js/index.js",
+            "async": false,
+            "defer": false,
+            "integrity": "",
+            "crossorigin": "anonymous",
+            "type": "module"
+        }
+    ]
+})%>
+
+
+ 

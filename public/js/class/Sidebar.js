@@ -1,28 +1,51 @@
+/**
+ * @name Sidebar
+ * @description Create side menu bar
+ * @access public
+ * @version 1.0.0
+ * @author Leonardo Avelino
+ */
 export class Sidebar {
-    constructor(elementIdentifier, controllerIdentifier) {
-        this._element = this._searchElement(elementIdentifier);
-        this._controller = this._searchElement(controllerIdentifier);
+    constructor(elementIdentifier, controllerIdentifier, wall) {
+        this._element = document.querySelector(elementIdentifier);
+        ;
+        this._controller = document.querySelector(controllerIdentifier);
+        ;
+        this._wall = document.querySelector(wall);
         this._status = false;
         this._start();
     }
+    /**
+     * @name _start
+     * @description Activates event and wall
+     * @access private
+     * @return void
+     */
     _start() {
-        this._controller.then(element => {
-            this._eventInController(element);
-        });
+        this._event(this._controller, "click", this._change.bind(this));
+        (this._wall) ? this._event(this._wall, "click", this._change.bind(this)) : null;
     }
-    _searchElement(identifier) {
-        return new Promise((resolve, reject) => {
-            resolve(document.querySelector(identifier));
-        });
+    /**
+     * @name _event
+     * @description Activates event and wall
+     * @access private
+     * @param {Element} element: target of the event
+     * @param {string} type: event type
+     * @param {EventListenerObject} callback: function to perform when listening to an event
+     * @return void
+     */
+    _event(element, type, callback) {
+        element.addEventListener(type, callback);
     }
-    _eventInController(element) {
-        element.addEventListener("click", () => {
-            this._status = !this._status;
-            this._changeState(this._element, "data-collapse");
-            this._changeState(this._controller, "data-open");
-        });
-    }
-    _changeState(promise, attribute) {
-        promise.then(element => element.setAttribute(attribute, this._status));
+    /**
+     * @name _change
+     * @description Changes display state of elements
+     * @access private
+     * @return void
+     */
+    _change() {
+        this._status = !this._status;
+        this._element.setAttribute("data-collapse", `${this._status}`);
+        this._controller.setAttribute("data-open", `${this._status}`);
     }
 }

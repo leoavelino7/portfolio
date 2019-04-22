@@ -3,6 +3,7 @@
    * @description Animate scroll bar
    * @access public
    * @version 1.0.0
+   * @author Leonardo Avelino
 */
 export class AnimateScroll {
     private _links: NodeListOf<Element>;
@@ -20,6 +21,12 @@ export class AnimateScroll {
         this._type = type;
         this._hash = hash;
         this._links.forEach(item => item.addEventListener("click", this._scrollToIdOnClick));
+        
+        // When change resolution, reposition the scroll bar
+        window.onresize = () => {
+            let { hash } = window.location;
+            this._links.forEach((item: HTMLBaseElement) => (item.getAttribute("href") === hash) ? item.click() : null );
+        };
     }
 
     /**

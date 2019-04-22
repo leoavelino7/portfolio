@@ -72,6 +72,10 @@
     }
 }
 
+.active {
+    opacity: 1 !important;
+}
+
 .controller {
     display: flex;
     flex-direction: row;
@@ -141,6 +145,9 @@
     .sidebar {
         &[data-collapse=false] {
             left: 0;
+        }
+        &~.wall {
+            left: -100% !important;
         }
     }
 }
